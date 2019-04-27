@@ -53,3 +53,20 @@ Here is a list of methods supplied by the client class:
 * hectoPascalWrite(channel,value): sends a barometric pressure value in hecto Pascal
 * volatageWrite(channel,value): sends a voltage value in mV
 * digitalWrite(channel,value): sends a digital value (0/1)
+## Receiving and treating commands
+In order to receive commands from Cayenne you must subscribe to a command topic. This is done automatically after establishing the connection to Cayenne. In order to treat command messages you must create a callback function which takes a list (topic,payload) as parameter as register it with the Cayenne MQTT client:
+
+client.on_message = yourCallback
+
+It is then your job to find out from which channel the command came from and which value was sent.
+## The CayenneMessage class
+In order to help you parsing the received command message, you create a CayenneMessage object passing it the received topic and payload:
+
+msg=CayenneMessage(topic,payload)
+
+* msg.client_id contains the client_id having sent the message
+* msg.channel contains the channel number
+* msg.msg_id contains the message id
+* msg.value contains the value
+
+Please have a look at Exampl2_02_ReceiveData.py how this is done
