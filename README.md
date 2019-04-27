@@ -45,3 +45,11 @@ Here is a list of methods supplied by the client class:
         logname=LOG_NAME, loglevel=logging.WARNING):
         starts the connection to Cayenne
 * celsiusWrite(channel,value): sends a temperature value in °Celsius
+* fahrenheitWrite(channel,value): sends a temperature value in Fahrenheit
+* kelvinWrite(channel,value): sends a temperature value in Kelvin
+* humidityWrite(channel,value): send a relative humidity value in percent
+* luxWite(channel,value): sends a light intensity value in lux
+* pascalWrite(channel,value): sends a barometric pressure value in Pascal
+* hectoPascalWrite(channel,value): sends a barometric pressure value in hecto Pascal
+* volatageWrite(channel,value): sends a voltage value in mV
+* digitalWrite(channel,value): sends a digital value (0/1)
