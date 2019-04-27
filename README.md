@@ -69,4 +69,4 @@ msg=CayenneMessage(topic,payload)
 * msg.msg_id contains the message id
 * msg.value contains the value
 
-Please have a look at Exampl2_02_ReceiveData.py how this is done
+Please have a look at Example_02_ReceiveData.py how this is done
