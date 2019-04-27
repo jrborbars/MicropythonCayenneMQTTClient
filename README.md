@@ -14,6 +14,7 @@ The Cayenne MQTT Client for Micropython depends on
 * umqtt/simple.py
 * logging
 
+Befor installing the cayenne library you must modify thee WiFi SSID and wifiPassword parameters in 
 The logging code can be found in micropython-lib. In order to test the library you may create a directory "lib" on your Micropython using uPyCraft with sub-directories umqtt and cayenne. The logging code (logging.y from micropython-lib) goes into lib, simple.py goes into lib/umqtt and client.py from this repository goes into cayenne. With the libraries now available you may try to run the example codes
 ## Installation of the library
 Once you manage to run the example codes you may want to permanenty install the libraries in Micropython. Download the [Micropython sources](https://github.com/micropython/micropython), and change directory to ???micropythonsSource???/ports/esp8266/modules. Copy logging.py to the modules directory. Create the directories umqtt and cayenne and copy simple.py and client.py respectlively.
@@ -25,3 +26,6 @@ import cayenne.client
 
 import logging
 
+After this, define the Cayenne credentials:
+* username
+* password
