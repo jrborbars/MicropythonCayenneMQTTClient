@@ -92,23 +92,29 @@ class CayenneMQTTClient:
     The callback function should have the following signature: on_message(message)
     The message variable passed to the callback is an instance of the CayenneMessage class.
     """
-    def __init__(self):
-        
-        # init ic2 object
-        i2c = I2C(scl=Pin(pinScl), sda=Pin(pinSda)) #ESP8266 5/4
-        # Scan the i2c bus and verify if the OLED sceen is connected
-        print('Scan i2c bus...')
+    def __init__(self,testOled=True):
+        # if the shield uses the D1 or D2 line this would create a clash
+        # with the I2C SCL and SDA lines of the Oled display
+        # create the client object with testOled=False in this case        
+        if testOled:
+            # init ic2 object
+            i2c = I2C(scl=Pin(pinScl), sda=Pin(pinSda)) #ESP8266 5/4
+            # Scan the i2c bus and verify if the OLED sceen is connected
+            print('Scan i2c bus...')
 
-        self.devices = i2c.scan()
-        if len(self.devices) == 0:
-            print("No i2c device !")
-            self.oledIsConnected = False
+            self.devices = i2c.scan()
+            if len(self.devices) == 0:
+                print("No i2c device !")
+                self.oledIsConnected = False
+            else:
+                for self.device in self.devices:
+                    print("OLED found")
+                    if self.device == addrOled:
+                        self.oled = ssd1306.SSD1306_I2C(wSize, hSize, i2c, addrOled)
+                        self.oledIsConnected = True
         else:
-            for self.device in self.devices:
-                print("OLED found")
-                if self.device == addrOled:
-                    self.oled = ssd1306.SSD1306_I2C(wSize, hSize, i2c, addrOled)
-                    self.oledIsConnected = True
+            self.oledIsConnected=False
+            
         self.client = None
         self.rootTopic = ""
         self.connected = False
