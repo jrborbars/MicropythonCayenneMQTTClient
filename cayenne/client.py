@@ -92,7 +92,7 @@ class CayenneMQTTClient:
     The callback function should have the following signature: on_message(message)
     The message variable passed to the callback is an instance of the CayenneMessage class.
     """
-    def __init__(self,testOled=True):
+    def __init__(self,testOled=False):
         # if the shield uses the D1 or D2 line this would create a clash
         # with the I2C SCL and SDA lines of the Oled display
         # create the client object with testOled=False in this case        
