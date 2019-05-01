@@ -37,10 +37,11 @@ Finally you must create a CayenneMQTTClient object:
 client = cayenne.client.CayenneMQTTClient()
 Calling the *begin* method of this class will connect the program to your WiFi network and then to the Cayenne MQTT broker at mqtt.mydevices.com. Once the connection is established you can send your data. See Example-01-SendData.py for an example.
 ## The Oled display
-For the WeMos D1 mini you can get a small Oled display which is connected to the CPU through the I2C bus. The Cayenne MQTT client will check if this module is connected and it will print connection information (IP number and a message that connection to Cayenne has been established). If the Oled module is not connected the Client will work nevertheless.
-Some WeMos D1 shields may use the D1 or D2 lines (GPIO 4 or 5) for other purpose than as I2C SDA and SCL lines. In this case we cannot use the Oled display (it should be removed) and the cayenne client object should be created with: 
+For the WeMos D1 mini you can get a small Oled display which is connected to the CPU through the I2C bus. The Cayenne MQTT client will check if this module is connected and it will print connection information (IP number and a message that connection to Cayenne has been established). If the Oled module is not connected the Client will work nevertheless. 
 
-client = cayenne.client.CayenneMQTTClient(testOled=False)
+Some WeMos D1 shields may use the D1 or D2 lines (GPIO 4 or 5) for other purpose than as I2C SDA and SCL lines. In this case we cannot use the Oled display (it should be removed). When using the Oled you must create the client with:
+
+client = cayenne.client.CayenneMQTTClient(testOled=True)
 
 ## Client methods
 Here is a list of methods supplied by the client class:
