@@ -8,8 +8,6 @@ from cayenne import __version__
 import logging
 import sys
 
-pinScl      =  5  #ESP8266 GPIO5 (D1)
-pinSda      =  4  #ESP8266 GPIO4 (D2)
 addrOled    = 60  #0x3c
 hSize       = 48  # Hauteur ecran en pixels | display height in pixels
 wSize       = 64  # Largeur ecran en pixels | display width in pixels
@@ -97,6 +95,15 @@ class CayenneMQTTClient:
         # with the I2C SCL and SDA lines of the Oled display
         # create the client object with testOled=False in this case        
         if testOled:
+            if sys.platform == "esp8266":
+                #print("Running on ESP8266")
+                pinScl      =  5  #ESP8266 GPIO5 (D1
+                pinSda      =  4  #ESP8266 GPIO4 (D2)
+            else:
+                #print("Running on ESP32") 
+                pinScl      =  22  # SCL on esp32 
+                pinSda      =  21  # SDA ON ESP32
+                
             # init ic2 object
             i2c = I2C(scl=Pin(pinScl), sda=Pin(pinSda)) #ESP8266 5/4
             # Scan the i2c bus and verify if the OLED sceen is connected
